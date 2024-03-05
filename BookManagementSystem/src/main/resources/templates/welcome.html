@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: -1;
+        }
+        header {
+            background-color: #3a3939;
+            color: #fff;
+            padding: 1px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #646c7a;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0;
+        }
+        p {
+            line-height: 1.6;
+        }
+        footer {
+            background-color: #3a3939; /* Google Blue */
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="particles-js"></div>
+<header>
+    <h1>Book Management System</h1>
+</header>
+<nav>
+    <div sec:authorize="isAuthenticated()">
+        <form id="logoutForm" method="POST" th:action="@{/logout}">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+        <h2 class="text-lg text-right mb-4">Welcome <span sec:authentication="name"></span> |<a href="#" onclick="document.getElementById('logoutForm').submit()" class="text-blue-500">Logout</a></h2>
+    </div>
+    <a href="/welcome">Home</a>
+    <a href="/available_books">Available books</a>
+    <a href="/my_books">My books</a>
+    <a href="/book_register">Add new books</a>
+</nav>
+<div class="container">
+    <h2>Welcome to our Book Management System Homepage!</h2>
+    <p> The "Book Management System" website offers an efficient solution for organizing and managing books, catering to both individual readers and organizational needs. With its user-friendly interface and intuitive design, users can seamlessly navigate through the website's features.
+        At the top of the page, the header boldly presents the website's title, setting a clear context for visitors. Below it, the navigation bar provides easy access to different sections such as "Home," "Available books," "My books," and "Add new books." This streamlined navigation ensures users can swiftly find the information they need.
+        In the main content section, a welcoming message greets visitors, accompanied by a concise description of the website's purpose. This brief overview helps users understand how the Book Management System can be beneficial for them, whether they are managing personal collections, organizing books for a library, or maintaining an inventory for a bookstore.
+        Towards the bottom of the page, the footer offers copyright information, reassuring users of the website's ownership and legitimacy. Additionally, the footer dynamically displays the current year, ensuring the copyright notice remains up-to-date.
+        Overall, the Book Management System website simplifies the task of managing books by providing essential features such as categorization, tracking, and adding new entries. Whether users are enthusiasts, librarians, or professionals in the book industry, this website serves as a valuable tool for efficient book management, contributing to a seamless and enjoyable reading experience.</p>
+</div>
+<footer>
+    <p>&copy; <span th:text="${#dates.format(#dates.createNow(),'yyyy')}"></span> Book management system. All rights reserved.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+</script>
+</body>
+</html>
