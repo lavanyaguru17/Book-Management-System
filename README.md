@@ -57,6 +57,6 @@ To use this project:
    mvn spring-boot:run
    ```
 
-2. Open your web browser and navigate to `http://localhost:8080/login` to access the login page.
-3. Enter your username and password (you can use the predefined users specified in the `SecurityConfig` class).
-4. Upon successful login, you will be redirected to the welcome page.
+2. Open your web browser and navigate to http://localhost:8080 to access the Book Management System.
+3. Log in using the provided credentials or create a new account.
+4. Begin managing books, authors, and categories through the intuitive user interface.
